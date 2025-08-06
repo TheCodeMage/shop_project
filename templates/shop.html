@@ -7,13 +7,14 @@
 <h1 class="shop-title">Browse Products</h1>
 <div class="product-grid">
     {% for product in products %}
-    <!-- Sample Product Cards -->
-    <div class="product-card">
-        <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        <h2>{{ product.name }}</h2>
-        <p>${{ product.price }}</p>
-        <button>Add to Cart</button>
-    </div>
+    <a href="{% url 'product_detail' product.id %}" class="product-card-link">
+        <div class="product-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h2>{{ product.name }}</h2>
+            <p>MMK{{ product.price }}</p>
+            <button>Add to Cart</button>
+        </div>
+    </a>
     {% empty %}
     <p>No products available.</p>
     {% endfor %}
