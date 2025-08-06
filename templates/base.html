@@ -13,6 +13,7 @@
 
     <!-- CSS files -->
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/product_card.css' %}">
 </head>
 
 <body>
@@ -21,7 +22,7 @@
         <div class="logo"><a href="{% url 'home' %}">OnlineShop</a></div>
         <ul class="nav-links">
             <li><a href="{% url 'home' %}">Home</a></li>
-            <li><a href="#">Shop</a></li>
+            <li><a href="{% url 'shop' %}">Shop</a></li>
             <li><a href="#">Sign In</a></li>
             <li><a href="#">Sign Up</a></li>
             <li><a href="#">Cart</a></li>
