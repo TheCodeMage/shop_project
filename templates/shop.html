@@ -1,29 +1,21 @@
 {% extends 'base.html' %}
-{% load static %} <!-- ဒီလို ထည့်ရမယ် -->
+<!-- {% load static %} -->
 
 {% block title %}Shop - Online Shop{% endblock %}
 
 {% block content %}
 <h1 class="shop-title">Browse Products</h1>
 <div class="product-grid">
+    {% for product in products %}
     <!-- Sample Product Cards -->
     <div class="product-card">
-        <img src="{% static 'images/product1.webp' %}" alt="Product 1">
-        <h2>Wireless Headphones</h2>
-        <p>$49.99</p>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <h2>{{ product.name }}</h2>
+        <p>${{ product.price }}</p>
         <button>Add to Cart</button>
     </div>
-    <div class="product-card">
-        <img src="{% static 'images/product2.webp' %}" alt="Product 2">
-        <h2>Smart Watch</h2>
-        <p>$79.99</p>
-        <button>Add to Cart</button>
-    </div>
-    <div class="product-card">
-        <img src="{% static 'images/product3.webp' %}" alt="Product 3">
-        <h2>Bluetooth Speaker</h2>
-        <p>$29.99</p>
-        <button>Add to Cart</button>
-    </div>
+    {% empty %}
+    <p>No products available.</p>
+    {% endfor %}
 </div>
 {% endblock %}
