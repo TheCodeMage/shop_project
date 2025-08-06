@@ -5,18 +5,23 @@
 
 {% block content %}
 <h1 class="shop-title">Browse Products</h1>
-<div class="product-grid">
+
+<!-- 🔍 Search Bar -->
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search products...">
+</div>
+
+<!-- 🛍 Product Grid -->
+<div class="product-grid" id="productGrid">
     {% for product in products %}
-    <a href="{% url 'product_detail' product.id %}" class="product-card-link">
-        <div class="product-card">
+    <div class="product-card" data-name="{{ product.name|lower }}">
+        <a href="{% url 'product_detail' product.id %}" class="product-card-link">
             <img src="{{ product.image.url }}" alt="{{ product.name }}">
             <h2>{{ product.name }}</h2>
             <p>MMK{{ product.price }}</p>
             <button>Add to Cart</button>
-        </div>
-    </a>
-    {% empty %}
-    <p>No products available.</p>
+        </a>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}
