@@ -11,6 +11,14 @@
     <input type="text" id="searchInput" placeholder="Search products...">
 </div>
 
+<!-- Category Filter -->
+<div class="category-filter">
+    <a href="{% url 'shop' %}">All</a>
+    {% for cat in categories %}
+    <a href="{% url 'shop' %}?category={{ cat.id }}">{{ cat.name }}</a>
+    {% endfor %}
+</div>
+
 <!-- 🛍 Product Grid -->
 <div class="product-grid" id="productGrid">
     {% for product in products %}
@@ -19,8 +27,8 @@
             <img src="{{ product.image.url }}" alt="{{ product.name }}">
             <h2>{{ product.name }}</h2>
             <p>MMK{{ product.price }}</p>
-            <button>Add to Cart</button>
         </a>
+        <button>Add to Cart</button>
     </div>
     {% endfor %}
 </div>

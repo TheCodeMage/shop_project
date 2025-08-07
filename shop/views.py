@@ -1,12 +1,21 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Product
+from .models import Product, Category
 
 def home(request):
     return render(request, 'home.html')
 
 def shop(request):
-    products = Product.objects.all()
-    return render(request, 'shop.html', {'products': products})
+    category_id = request.GET.get('category')
+    if category_id:
+        products = Product.objects.filter(category__id=category_id)
+    else:
+        products = Product.objects.all()
+
+    categories = Category.objects.all()
+    return render(request, 'shop.html', {
+        'products': products,
+        'categories': categories
+    })
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
